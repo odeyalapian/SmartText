@@ -10,7 +10,7 @@ function Note(props) {
       className={styles.textDisplayContainer} // השתמש ב־CSS Modules פה
     >
       <label>{props.noteName}</label>
-      <button className={styles.closeBtn} onClick={(e) => props.closeNote(e, props.index)}>✖</button>
+      {props.isActive && <button className={styles.closeBtn} onClick={(e) => { e.stopPropagation(); props.closeNote(props.index)}}>✖</button>}
       <div
         className={styles.textDisplayContent} // השתמש ב־CSS Modules פה
         style={{ direction: props.direction }}
@@ -24,7 +24,7 @@ function Note(props) {
               : item.style;
 
             return (
-              <span key={index} style={style}>
+              <span className={styles.letter} key={index} style={style}>
                 {item.char}
               </span>
             );

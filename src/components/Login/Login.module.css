@@ -1,7 +1,7 @@
 .LoginPage{
     height: 100%;
     width: 100%;
-    background-color: rgb(29, 104, 178);       
+    background-color: rgb(31, 107, 183);       
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,8 +90,7 @@
   }
   
   .wrapper .btn:hover {
-    background: #bd65e3;
-    color: #fff;
+    background: #e2e2e2;
   }
   
   .wrapper .registerLink {

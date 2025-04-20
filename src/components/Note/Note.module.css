@@ -54,3 +54,8 @@
     height: 210px;
   }
 
+  .letter:hover{
+    border: none !important;
+    box-shadow: none !important;
+  }
+

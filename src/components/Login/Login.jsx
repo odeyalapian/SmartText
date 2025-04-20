@@ -9,42 +9,38 @@ function Login({ setUsername, username, setIsConnected }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem('noteAppUsers')) || [];
-
-    const userExists = users.find(
-      (user) => user.username === username && user.password === password
-    );
-
-    if (userExists) {
+    const users = JSON.parse(localStorage.getItem('noteAppUsers')) || {};
+  
+    const user = users[username];
+  
+    if (user && user.password === password) {
       alert('Login successful!');
       setIsConnected(true);
       setUsername(username);
-
     } else {
       alert('Incorrect username or password');
     }
   };
-
+  
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem('noteAppUsers')) || [];
-
-    const userExists = users.find((user) => user.username === username);
-
-    if (userExists) {
+    const users = JSON.parse(localStorage.getItem('noteAppUsers')) || {};
+  
+    if (users[username]) {
       alert('Username already exists!');
       return;
     }
-
-    users.push({ username, email, password });
+  
+    users[username] = { username, email, password };
     localStorage.setItem('noteAppUsers', JSON.stringify(users));
+  
     alert('Signup successful!');
     setIsConnected(true);
     setUsername(username);
   };
+  
 
   return (
     <div className={styles.LoginPage}>

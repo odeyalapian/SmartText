@@ -42,11 +42,33 @@
   }
 
   .helloSpan{
-    margin-right: 90%;
-    margin-top: 1.5%;
+    margin-right: 86.5%;
+    margin-top: 3.8%;
     position: absolute;
     z-index: 2;
     font-size: larger;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .helloSpan:hover{
+    border:none !important;
+  }
+  .header{
+    display: flex;
+    align-items: center;
+  }
+
+  .signOut {
+    margin-right: 97%;
+    margin-top: 3%;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer; /* עושה את הסמן של העכבר ליד לחיצה */
+    transition: transform 0.2s ease, color 0.2s ease; /* מעברים חלקים */
+  }
+  
+  .signOut:hover {
+    transform: scale(1.1); /* מגדיל קצת כשהעכבר מעל */
+    color: #7d8188; /* לדוגמה, שינוי צבע אדום בלחיצה */
   }
   

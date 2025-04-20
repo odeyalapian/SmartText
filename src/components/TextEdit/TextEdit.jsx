@@ -53,6 +53,8 @@ function TextEdit(props) {
           <StyleControl
             setColor={props.setColor}
             color={props.color}
+            font={props.font}
+            fontSize={props.fontSize}
             setFont={props.setFont}
             setFontSize={props.setFontSize}
             setText={props.setText}

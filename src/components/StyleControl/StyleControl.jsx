@@ -28,7 +28,7 @@ function StyleControl(props){
           </button>
           <label className={styles.applyChangesLabel}>:Apply changes</label>
           </div>
-          <FontSelector setFont={props.setFont} setFontSize={props.setFontSize} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
+          <FontSelector font={props.font} fontSize={props.fontSize} setFont={props.setFont} setFontSize={props.setFontSize} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
           <ColorSelector setColor={props.setColor} color={props.color} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
 
         </div> 

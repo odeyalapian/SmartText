@@ -16,7 +16,7 @@ const getNextNoteId = () => {
   return currentId;
 };
 
-function NotesBoard({ text, setText, color, font, fontSize, direction, highlightedIndexes, setFocusTarget, history, setHistory }) {
+function NotesBoard({ username, text, setText, color, font, fontSize, direction, highlightedIndexes, setFocusTarget, history, setHistory }) {
 
   const [savedNotes, setSavedNotes] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -26,76 +26,99 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
 
  
 
-  const deleteeNote = () =>{
-    
-    if (displayNotes[currentIndex].name!=="<new note>"){
-
-      
+  const deleteNote = () => {
+    if (displayNotes[currentIndex].name !== "<new note>") {
       const isConfirmed = confirm("האם אתה בטוח שברצונך למחוק את הפתק הזה?");
-
+  
       if (isConfirmed) {
-        const notes = JSON.parse(localStorage.getItem('notes') || '{}');
-        const id=displayNotes[currentIndex].id;
-        delete notes[id];
-        localStorage.setItem('notes', JSON.stringify(notes));
-        setSavedNotes(notes);
-        alert("הפתק נמחק בהצלחה!");
+        const users = JSON.parse(localStorage.getItem('noteAppUsers') || '{}');
+        const id = displayNotes[currentIndex].id;
+  
+        // נוודא שיש למשתמש פתקים
+        if (users[username]?.notes && users[username].notes[id]) {
+          delete users[username].notes[id];
+          localStorage.setItem('noteAppUsers', JSON.stringify(users));
+          setSavedNotes(users[username].notes);
+          alert("הפתק נמחק בהצלחה!");
+        } else {
+          alert("הפתק לא נמצא או שכבר נמחק.");
+        }
       }
     }
+  console.log(currentIndex)
     closeNote(currentIndex);
-  }
+  };
+  
 
-  const closeNote = (e, index) => {
-    e.stopPropagation();
-    console.log("close")
-    console.log(index)
-
-    let notes=[...displayNotes];
-    notes[index]=-1;
+  const closeNote = (index) => {
+    
+    console.log("close");
+    console.log(index);
+  
+    let notes = [...displayNotes];
+    notes[index] = -1;
     const sortedNotes = notes.filter(n => n !== -1).concat(notes.filter(n => n === -1));
-
+  
     setCurrentIndex(-1);
-    console.log(sortedNotes)
+    console.log(sortedNotes);
     setDisplayNotes(sortedNotes);
-
-    sortedNotes.map((note, index) => {console.log(note); console.log(index)});
-
-  }
+  
+    sortedNotes.map((note, index) => {
+      console.log(note);
+      console.log(index);
+    });
+  };
+  
 
   const saveNote = () => {
-      let name; 
-      if (displayNotes[currentIndex].name=="<new note>"){
-        name = prompt('הכנס שם לפתק:');
-        if (!name) return;
-      }
-      else{
-        name=displayNotes[currentIndex].name;
-      }
-      console.log(currentIndex)
-      const notes = JSON.parse(localStorage.getItem('notes') || '{}');
-      const id=displayNotes[currentIndex].id;
-      notes[id] = {
-        id,
-        name,
-        data: text
-      };
-      localStorage.setItem('notes', JSON.stringify(notes));
-      let updatedNotes=[...displayNotes];
-      updatedNotes[currentIndex].name=name;
-      setDisplayNotes(updatedNotes);
-      console.log(updatedNotes)
-      setSavedNotes(notes);
-      alert(`הפתק "${name}" נשמר בהצלחה!`);
-  };  
+    let name;
+  
+    // אם הפתק חדש, בקשת שם מהמשתמש
+    if (displayNotes[currentIndex].name === "<new note>") {
+      name = prompt('הכנס שם לפתק:');
+      if (!name) return;
+    } else {
+      name = displayNotes[currentIndex].name;
+    }
+  
+    const users = JSON.parse(localStorage.getItem('noteAppUsers') || '{}');
+  
+    // אם למשתמש אין עדיין notes, ניצור אחד
+    const userNotes = users[username].notes || {};
+    const id = displayNotes[currentIndex].id;
+  
+    // עדכון הפתק ברשימת הפתקים
+    userNotes[id] = {
+      id,
+      name,
+      data: text
+    };
+  
+    // שמירת הפתקים החדשים במשתמש
+    users[username].notes = userNotes;
+  
+    // שמירת כל המשתמשים בזיכרון
+    localStorage.setItem('noteAppUsers', JSON.stringify(users));
+  
+    // עדכון סטייט
+    const updatedNotes = [...displayNotes];
+    updatedNotes[currentIndex].name = name;
+    setDisplayNotes(updatedNotes);
+    setSavedNotes(userNotes);
+  
+    alert(`הפתק "${name}" נשמר בהצלחה!`);
+  };
+  
 
   const toggleSidebar = () => {
     if (!sidebarOpen) {
-      const notesFromStorage = JSON.parse(localStorage.getItem('notes') || '{}');
+      const users = JSON.parse(localStorage.getItem('noteAppUsers') || '{}');
+      const notesFromStorage = users[username]?.notes || {};
       setSavedNotes(notesFromStorage);
     }
     setSidebarOpen(!sidebarOpen);
-  }; 
-
+  };
+  
   const addNewNote = () => {
 
     console.log(displayNotes)
@@ -219,7 +242,7 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
         <div className={styles.AllButtons}>
          <button className={styles.actButton} onClick={addNewNote}><GrAdd size={20} className="myIcon" title="Add"/></button>
         <button onClick={saveNote} className={styles.actButton}><IoIosSave size={20}  className="myIcon" title="Save"/></button>
-        <button onClick={deleteeNote} className={styles.actButton}><MdDelete size={20}  className="myIcon" title="Delete"/></button>
+        <button onClick={deleteNote} className={styles.actButton}><MdDelete size={20}  className="myIcon" title="Delete"/></button>
         </div>
        
 
@@ -228,6 +251,7 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
             note !== -1 ? (
               <div key={note.id} className={`${styles.cell} ${isActive[index] ? styles.selectedNote : ''}`}>
                 <Note
+                  isActive={isActive[index]}
                   closeNote={closeNote}
                   handleClick={handleClick}
                   index={index}
