@@ -57,6 +57,7 @@
   display: flex;
   align-items: center; /* יישור אנכי */
   justify-content: center;  /* יישור אופקי */
+  gap: 0.2rem;
 }
 
 .searchSection input {

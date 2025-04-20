@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import styles from './ActionControl.module.css';
 
 function ActionControl(props) {
-  const [showReplaceInput, setShowReplaceInput] = useState(false);
-
+  
   function deleteChar() {
     if (props.text.length > 0) {
       props.setHistory(prevHistory => [...prevHistory, [...props.text]]);
