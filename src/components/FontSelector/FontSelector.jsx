@@ -50,8 +50,7 @@ import styles from './FontSelector.module.css';
       
       return (
         <div className={styles.fontSelector}>
-          <div>
-            <label>Font:</label>
+          <div className={styles.fontStyle}>
             <select onChange={(e) => handleFontChange(e.target.value)}>
               {fonts.map(fontOption => (
                 <option key={fontOption.id} value={fontOption.id}>
@@ -59,10 +58,10 @@ import styles from './FontSelector.module.css';
                 </option>
               ))}
             </select>
+            <label>:Font family</label>
           </div>
     
-          <div>
-            <label>Size:</label>
+          <div className={styles.fontStyle}>
             <select onChange={(e) => handleFontSizeChange(parseInt(e.target.value))}>
               {fontSizes.map(size => (
                 <option key={size} value={size}>
@@ -70,6 +69,7 @@ import styles from './FontSelector.module.css';
                 </option>
               ))}
             </select>
+            <label>:Font size</label>
           </div>
         </div>
       );

@@ -4,26 +4,27 @@
     gap: 10px;
     padding: 20px;
     border-radius: 10px;
-    width: 280px; /* או כל רוחב שמתאים לך */
-    margin-top: 40px;
-    margin-right: 20px;
+    width: 290px; /* או כל רוחב שמתאים לך */
+    margin-top: 50px;
+    margin-right: 80px;
+    background-color: rgba(224, 224, 224, 0.4);
+    height: 72%;
   }
   
   .actionsControls button {
-    background-color: #6eb3e8;
-    color: white;
-    border: none;
+    background-color: #f6f8f9;
+    color: #0078d4;
+    border: 0.5px solid rgb(183, 180, 180);
     padding: 8px 16px;
     font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    width: 100%;
     text-align: center;
   }
   
   .actionsControls button:hover {
-    background-color: #005fa3;
+    background-color: #d7dcdf;
   }
   
   .actionsControls button:active {
@@ -33,11 +34,11 @@
   .actionsControls input[type="text"] {
     padding: 8px 12px;
     border: 1px solid #ccc;
-    border-radius:  0 5px 5px 0;
+    border-radius:  5px 0 0 5px;
     font-size: 14px;
-    margin-top: 10px;
     width: 100%;
     box-sizing: border-box;
+    direction: ltr;
 
   }
   
@@ -46,18 +47,23 @@
     outline: none;
   }
 
-  
+  .undoBtn{
+    margin-bottom: 15px;
+    width: 35%;
+    margin-right: 35%;
+    background-color: #0078d4 !important;
+    color: #f9fafb !important;
+  }
 .deleteSection{
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .searchSection {
   display: flex;
   align-items: center; /* יישור אנכי */
   justify-content: center;  /* יישור אופקי */
-  gap: 0.2rem;
 }
 
 .searchSection input {
@@ -70,21 +76,21 @@
 .searchSection button {
   flex: 0 0 30%;
   height: 40px; /* או כל גובה שתרצי */
-  margin-top: 10px;
   padding: 0;
 }
 
 .searchSection .searchBtn{
-  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  margin-top: 0;
 }
 .searchSection .clearButton{
   flex: 0 0 10%;
   background-color: white !important;
   border: 1px solid #ccc;
   color: gray;
-  border-right: none;
+  border-left: none;
   width: 20px;
-  border-radius:  5px 0 0 5px;
+  border-radius:  0 5px 5px 0;
   font-size: 12px;
 
 }

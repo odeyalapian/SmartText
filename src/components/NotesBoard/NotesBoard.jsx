@@ -20,7 +20,7 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
 
   const [savedNotes, setSavedNotes] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [displayNotes, setDisplayNotes] = useState([-1, -1, -1, -1, -1]);
+  const [displayNotes, setDisplayNotes] = useState([-1, -1, -1, -1]);
   const [currentIndex, setCurrentIndex]=useState(-1);
   const [isActive, setIsActive] = useState([false,false,false,false,false]);
 
@@ -45,17 +45,22 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
     closeNote(currentIndex);
   }
 
-  const closeNote = (index) => {
+  const closeNote = (e, index) => {
+    e.stopPropagation();
     console.log("close")
+    console.log(index)
+
     let notes=[...displayNotes];
     notes[index]=-1;
     const sortedNotes = notes.filter(n => n !== -1).concat(notes.filter(n => n === -1));
 
     setCurrentIndex(-1);
-    console.log(currentIndex)
+    console.log(sortedNotes)
     setDisplayNotes(sortedNotes);
-  }
 
+    sortedNotes.map((note, index) => {console.log(note); console.log(index)});
+
+  }
 
   const saveNote = () => {
       let name; 
@@ -78,9 +83,10 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
       let updatedNotes=[...displayNotes];
       updatedNotes[currentIndex].name=name;
       setDisplayNotes(updatedNotes);
+      console.log(updatedNotes)
+      setSavedNotes(notes);
       alert(`הפתק "${name}" נשמר בהצלחה!`);
-  };
-  
+  };  
 
   const toggleSidebar = () => {
     if (!sidebarOpen) {
@@ -88,17 +94,15 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
       setSavedNotes(notesFromStorage);
     }
     setSidebarOpen(!sidebarOpen);
-  };
-  
+  }; 
 
   const addNewNote = () => {
 
     console.log(displayNotes)
 
-
     const emptySlot = displayNotes.findIndex(index => index === -1);
     if (emptySlot === -1) {
-      alert("מצטערים, ניתן להציג מקסימום 5 פתקים. לא ניתן להציג פתק נוסף");
+      alert("מצטערים, ניתן להציג מקסימום 4 פתקים. לא ניתן להציג פתק נוסף");
       return;
     }
 
@@ -125,6 +129,9 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
     setDisplayNotes(updatedDisplayNotes);
     console.log(displayNotes)
 
+    let actives = Array(isActive.length).fill(false);
+    actives[emptySlot] = true;
+    setIsActive(actives);
   };
 
   const addNoteFromSidebar = (note) => {
@@ -136,7 +143,7 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
     }
     const emptySlot = displayNotes.findIndex(index => index === -1);
     if (emptySlot === -1) {
-      alert("מצטערים, ניתן להציג מקסימום 5 פתקים. לא ניתן להציג פתק נוסף");
+      alert("מצטערים, ניתן להציג מקסימום 4 פתקים. לא ניתן להציג פתק נוסף");
       return;
     }
 
@@ -161,6 +168,9 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
     const updatedDisplayNotes = [...displayNotes];
     updatedDisplayNotes[emptySlot] = newNote;
     setDisplayNotes(updatedDisplayNotes);
+    let actives = Array(isActive.length).fill(false);
+    actives[emptySlot] = true;
+    setIsActive(actives);
   };
 
   function handleClick(index) {
@@ -169,9 +179,10 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
       let actives = [...isActive]
       actives[currentIndex]=false
       setIsActive(actives);
-      displayNotes[currentIndex].data=text;
-      displayNotes[currentIndex].history=history;
-      
+      let updatedNotes=[...displayNotes]
+      updatedNotes[currentIndex].data=text;
+      updatedNotes[currentIndex].history=history;
+      setDisplayNotes(updatedNotes);
     }
 
     let newActives = Array(isActive.length).fill(false);  // כל הפתקים כבויים
@@ -188,9 +199,7 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
   return (
     <div className={styles.wrapper}>
       {/* Sidebar */}
-      <button className={styles.sidebarToggle} onClick={toggleSidebar}>
-        {sidebarOpen ? '✖' : '☰'}
-      </button>
+      <button className={styles.sidebarToggle} onClick={toggleSidebar}>☰</button>
       <div className={`${styles.sidebar} ${sidebarOpen ? styles.open : ''}`}>
         {sidebarOpen && (
           <ul className={styles.noteList}>
@@ -208,12 +217,9 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
       {/* Main Board */}
       <div className={styles.board}>
         <div className={styles.AllButtons}>
-         <button className={styles.actButton} onClick={addNewNote}><GrAdd size={20} className="myIcon" />
-         </button>
-        <button onClick={saveNote} className={styles.actButton}><IoIosSave size={20}  className="myIcon" />
-        </button>
-        <button onClick={deleteeNote} className={styles.actButton}><MdDelete size={20}  className="myIcon" />
-        </button>
+         <button className={styles.actButton} onClick={addNewNote}><GrAdd size={20} className="myIcon" title="Add"/></button>
+        <button onClick={saveNote} className={styles.actButton}><IoIosSave size={20}  className="myIcon" title="Save"/></button>
+        <button onClick={deleteeNote} className={styles.actButton}><MdDelete size={20}  className="myIcon" title="Delete"/></button>
         </div>
        
 

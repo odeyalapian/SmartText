@@ -10,7 +10,7 @@ function Note(props) {
       className={styles.textDisplayContainer} // השתמש ב־CSS Modules פה
     >
       <label>{props.noteName}</label>
-      <button className={styles.closeBtn} onClick={() => props.closeNote(props.index)}>✖</button>
+      <button className={styles.closeBtn} onClick={(e) => props.closeNote(e, props.index)}>✖</button>
       <div
         className={styles.textDisplayContent} // השתמש ב־CSS Modules פה
         style={{ direction: props.direction }}

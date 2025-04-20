@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './ColorSelector.module.css'; // השתמש ב־CSS Modules
+import { AiOutlineFontColors } from "react-icons/ai";
 
 function ColorSelector(props) {
 
@@ -50,13 +51,13 @@ function ColorSelector(props) {
 
   return (
     <div className={styles.colorSelector} ref={colorPickerRef}>
-      <label className={styles.colorLabel}>color:</label>
       <button 
         className={styles.colorButton} 
-        style={{ backgroundColor: props.color }} 
+        style={{ color: props.color }} 
         onClick={() => setIsOpen(!isOpen)}
-      >
+      ><AiOutlineFontColors size={25} className="myIcon" />
       </button>
+      <label className={styles.colorLabel}>:Text color</label>
   
       {isOpen && (
         <div className={styles.colorDropdown}>

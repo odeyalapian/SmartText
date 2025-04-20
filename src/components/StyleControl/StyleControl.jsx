@@ -6,14 +6,15 @@ import styles from './StyleControl.module.css'
 
 
 
+
 function StyleControl(props){
 
 
   const [applyToAll, setApplyToAll] = useState(true); // true = All
 
-const toggleApplyMode = () => {
-  setApplyToAll(prev => !prev);
-};
+  const toggleApplyMode = () => {
+    setApplyToAll(prev => !prev);
+  };
 
 
 
@@ -21,14 +22,15 @@ const toggleApplyMode = () => {
     return (       
         <div className={styles.stylesControl}>
           <div className={styles.changes}>
-          <label className={styles.applyChangesLabel}>Start changes:</label>
           <button className={styles.applyChangesButton} onClick={toggleApplyMode}>
             <span className={applyToAll ? styles.selected : ''}>All</span>
             <span className={applyToAll ? '' : styles.selected}>From now</span>
           </button>
+          <label className={styles.applyChangesLabel}>:Apply changes</label>
           </div>
-          <ColorSelector setColor={props.setColor} color={props.color} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
           <FontSelector setFont={props.setFont} setFontSize={props.setFontSize} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
+          <ColorSelector setColor={props.setColor} color={props.color} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
+
         </div> 
       );
     };

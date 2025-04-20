@@ -29,7 +29,7 @@ function ActionControl(props) {
 
   const undo = () => {
     if (props.history.length === 0) {
-      props.setText([]);
+      //props.setText([]);
     } else {
       const lastState = props.history[props.history.length - 1];
       props.setText([...lastState]);
@@ -76,15 +76,19 @@ function ActionControl(props) {
   return (
     <div className={styles.actionsControls}>
 
+    <button className={styles.undoBtn} onClick={undo}>Undo <FaUndo/> </button>
+
       <div className={styles.deleteSection}>
-        <button onClick={deleteChar}>delete char</button>
-        <button onClick={deleteWord}>delete word</button>
-        <button onClick={deleteAll}>delete all</button>
+        <button onClick={deleteChar}>Delete char</button>
+        <button onClick={deleteWord}>Delete word</button>
+        <button onClick={deleteAll}>Delete all</button>
       </div>
       
-      <button onClick={undo}> undo <FaUndo /> </button>
      
       <div className={styles.searchSection}>
+        <button className={styles.searchBtn} onClick={handleSearch}>Search</button>
+        <button className={styles.clearButton} onClick={() => props.setSearchWord('')}>✖</button>
+
         <input
           type="text"
           placeholder="Search..."
@@ -92,11 +96,11 @@ function ActionControl(props) {
           onClick={() => props.setFocusTarget('search')}
           readOnly
         />
-         <button className={styles.clearButton} onClick={() => props.setSearchWord('')}>✖</button>
-          <button className={styles.searchBtn} onClick={handleSearch}>Search</button>
         </div>
       
       <div className={styles.searchSection}>
+        <button className={styles.searchBtn} onClick={handleReplace}>Replace</button>
+        <button className={styles.clearButton} onClick={() => props.setReplaceWord('')}>✖</button>
         <input
           type="text"
           placeholder="Replace with..."
@@ -104,8 +108,6 @@ function ActionControl(props) {
           onFocus={() => props.setFocusTarget('replace')}
           readOnly
         />
-         <button className={styles.clearButton} onClick={() => props.setReplaceWord('')}>✖</button>
-        <button className={styles.searchBtn} onClick={handleReplace}>Replace</button>
       </div>
     
     </div>

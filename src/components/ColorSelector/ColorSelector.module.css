@@ -1,19 +1,23 @@
 .colorSelector {
   position: relative;
-  display: inline-block;
   display: flex;
-  margin-left: 60px;
-  
+  align-items: center;
+  flex-direction: row; /* במקום column */
+  justify-content: space-between; /* מרווח מקסימלי בין הילדים */
+  width: 100%;
 }
 
 .colorButton {
-  width: 150px;
+  width: 40px;
   height: 40px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
+  background-color: white;
   border-radius: 8px;
   cursor: pointer;
-  background-color: transparent;
+  color: transparent;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 92px;
+  font-weight: bold;
 }
 
 .colorButton:hover {
@@ -22,23 +26,23 @@
 
 .colorDropdown {
   position: absolute;
-  top: 45px;
-  left: 0;
+  top: 40px;
+  left: 140px;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  padding: 10px;
+  padding: 4px;
   display: grid;
-  grid-template-columns: repeat(4, 30px);
+  grid-template-columns: repeat(4, 15px);
   z-index: 100;
   animation: fadeIn 0.2s ease-in-out;
   
 }
 
 .colorOption {
-  width: 28px;
-  height: 28px;
+  width: 15px;
+  height: 15px;
   border: 1px solid #aaa;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -48,16 +52,14 @@
   transform: scale(1.1);
 }
 
-.colorOption.active {
-  outline: 3px solid #0078d4;
-  outline-offset: 2px;
-}
+
 
 .colorLabel {
   font-size: 14px;
     font-weight: 500;
     color: #333;
     margin: 0;
+    margin-left: 15px;
 }
 
 
