@@ -1,11 +1,9 @@
 import React from 'react';
-//import './FontSelector.css';
-
+import styles from './FontSelector.module.css';
 
 
  function FontSelector(props){
-
-    
+  
     const fonts = [
         { id: 'Arial', label: 'Arial' },
         { id: 'Times New Roman', label: 'Times New Roman' },
@@ -51,12 +49,10 @@ import React from 'react';
       };
       
       return (
-        <div className="font-selector">
-          <div className="font-family-selector">
-            <select  
-              onChange={(e) => handleFontChange(e.target.value)}
-              className="font-select"
-            >
+        <div className={styles.fontSelector}>
+          <div>
+            <label>בחר גופן</label>
+            <select onChange={(e) => handleFontChange(e.target.value)}>
               {fonts.map(fontOption => (
                 <option key={fontOption.id} value={fontOption.id}>
                   {fontOption.label}
@@ -65,11 +61,9 @@ import React from 'react';
             </select>
           </div>
     
-          <div className="font-size-selector">
-            <select 
-              onChange={(e) => handleFontSizeChange(parseInt(e.target.value))}
-              className="font-size-select"
-            >
+          <div>
+            <label>גודל גופן</label>
+            <select onChange={(e) => handleFontSizeChange(parseInt(e.target.value))}>
               {fontSizes.map(size => (
                 <option key={size} value={size}>
                   {size}px

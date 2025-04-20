@@ -1,0 +1,81 @@
+.wrapper {
+  display: flex;
+  height: 100%;
+  min-height: 100%;
+}
+
+.sidebar {
+  width: 0;
+  transition: 0.3s;
+  overflow-x: hidden;
+  background-color: #f0f0f0;
+  padding: 0;
+  direction: rtl;
+}
+
+.sidebar.open {
+  width: 200px;
+  padding: 10px;
+}
+
+.sidebarToggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ccc;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+
+.noteList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 50px;
+}
+
+.noteButton {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  text-align: right;
+}
+
+.board {
+  flex: 1;
+  padding: 20px;
+}
+
+.addButton {
+  margin-right: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.cell {
+  padding: 10px;
+
+}
+
+.cell :hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  cursor: pointer;
+  border: 2px solid #64adf7;
+}
+
+.selectedNote {
+  border: 2px solid #64adf7;
+  box-shadow: 0 0 12px rgba(58, 155, 220, 0.5);
+  background-color: #eef8ff;
+  transition: 0.3s;
+}

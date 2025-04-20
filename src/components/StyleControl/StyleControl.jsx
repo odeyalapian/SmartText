@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import FontSelector from '../FontSelector/FontSelector';
 import ColorSelector from '../ColorSelector/ColorSelector';
-import './StyleControl.css'
+import styles from './StyleControl.module.css'
 
 
 
@@ -18,17 +18,18 @@ const toggleApplyMode = () => {
 
 
 
-    return (   
-        
-        <div className="styles-control">
-          <FontSelector setFont={props.setFont} setFontSize={props.setFontSize} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
-          <ColorSelector setColor={props.setColor} color={props.color} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
-          <button onClick={toggleApplyMode}>
-           {applyToAll ? 'All' : 'From now'}
+    return (       
+        <div className={styles.stylesControl}>
+          <div className={styles.changes}>
+          <label className={styles.applyChangesLabel}>החל שינויים</label>
+          <button className={styles.applyChangesButton} onClick={toggleApplyMode}>
+            <span className={applyToAll ? styles.selected : ''}>All</span>
+            <span className={applyToAll ? '' : styles.selected}>From now</span>
           </button>
-
-        </div>
-    
+          </div>
+          <ColorSelector setColor={props.setColor} color={props.color} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
+          <FontSelector setFont={props.setFont} setFontSize={props.setFontSize} setText={props.setText} text={props.text} applyToAll={applyToAll} setHistory={props.setHistory} />
+        </div> 
       );
     };
 

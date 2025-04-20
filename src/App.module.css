@@ -1,0 +1,38 @@
+/* Reset בסיסי */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.app {
+  position: absolute;
+  height: 100%; /* חשוב! וודא שה־.app תופס את כל הגובה של המסך */
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+}
+
+.splitContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* חשוב גם כאן שה־.splitContainer תופס את כל הגובה */
+}
+
+.topHalf {
+  height: 55%;  /* 60% מהגודל של המסך */
+  background-color: #e3e3e3;
+  overflow: hidden; /* כדי למנוע גלילה פנימית */
+}
+
+.bottomHalf {
+  height: 45%; /* 40% מהגודל של המסך */
+  background-color: #c3c3c3;
+  overflow: hidden; /* כדי למנוע גלילה פנימית */
+}

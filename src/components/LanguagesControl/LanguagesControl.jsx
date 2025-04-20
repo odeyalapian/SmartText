@@ -1,26 +1,50 @@
 import React from 'react';
-//import 'LanguagesControl.css'
+import styles from './LanguagesControl.module.css';
 
-function LanguagesControl(props){
+function LanguagesControl(props) {
+  function changeLanguage(language) {
+    props.setCurrentLanguage(language);
+    language === "Hebrew"
+      ? props.setDirection("rtl")
+      : props.setDirection("ltr");
+  }
 
-
-    function changeLanguage(language){
-        props.setCurrentLanguage(language)
-        language=="Hebrew" ? props.setDirection("rtl") : props.setDirection("ltr")
-    }
-
-
-    return(
-
-         <div className='LanguagesControl'>
-            <button onClick={()=>{changeLanguage("Hebrew")}}>Hebrew</button>
-            <button onClick={()=>{changeLanguage("English")}}>English</button>
-            <button onClick={()=>{props.setCurrentLanguage("Emoji")}}>Emoji</button>
-            <button onClick={()=>{props.setCurrentLanguage("Symbols")}}>Symbols</button>
-        </div>
-           
-    )
-
+  return (
+    <div className={styles.languagesControl}>
+      <button
+        className={`${styles.languageButton} ${
+          props.currentLanguage === "Hebrew" ? styles.languageButtonSelected : ''
+        }`}
+        onClick={() => changeLanguage("Hebrew")}
+      >
+        Hebrew
+      </button>
+      <button
+        className={`${styles.languageButton} ${
+          props.currentLanguage === "English" ? styles.languageButtonSelected : ''
+        }`}
+        onClick={() => changeLanguage("English")}
+      >
+        English
+      </button>
+      <button
+        className={`${styles.languageButton} ${
+          props.currentLanguage === "Emoji" ? styles.languageButtonSelected : ''
+        }`}
+        onClick={() => props.setCurrentLanguage("Emoji")}
+      >
+        Emoji
+      </button>
+      <button
+        className={`${styles.languageButton} ${
+          props.currentLanguage === "Symbols" ? styles.languageButtonSelected : ''
+        }`}
+        onClick={() => props.setCurrentLanguage("Symbols")}
+      >
+        Symbols
+      </button>
+    </div>
+  );
 }
 
-export default LanguagesControl
+export default LanguagesControl;

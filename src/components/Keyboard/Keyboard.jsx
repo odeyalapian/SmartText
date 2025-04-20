@@ -1,7 +1,5 @@
 import React from 'react';
-import './Keyboard.css';
-
-
+import styles from './keyboard.module.css';
 
 function Keyboard(props) {
   const keyboards = {
@@ -31,7 +29,6 @@ function Keyboard(props) {
     ]
   };
 
-
   const currentStyle = {
     color: props.color,
     fontFamily: props.font,
@@ -40,6 +37,8 @@ function Keyboard(props) {
 
   const handleClick = (char) => {
 
+    console.log(props.focusTarget)
+    
     if (props.focusTarget === 'text') {
       props.setHistory(prev => [...prev, [...props.text]]);
       props.setText(prevText => [...prevText, { char, style: currentStyle }]);
@@ -49,15 +48,16 @@ function Keyboard(props) {
       props.setReplaceWord(prev => prev + char);
     }
   };
+
   return (
-    <div className="keyboard-container">
-      <div className="keyboard-wrapper">
+    <div className={styles.keyboardContainer}>
+      <div className={styles.keyboardWrapper}>
         {keyboards[props.currentLanguage].map((row, rowIndex) => (
-          <div key={rowIndex} className="keyboard-row">
+          <div key={rowIndex} className={styles.keyboardRow}>
             {row.map((char, charIndex) => (
               <button
                 key={charIndex}
-                className="keyboard-key"
+                className={styles.keyboardKey}
                 onClick={() => handleClick(char)}
               >
                 {char}
@@ -65,8 +65,8 @@ function Keyboard(props) {
             ))}
           </div>
         ))}
-        <div className="keyboard-row">
-          <button className="keyboard-key keyboard-space" onClick={() => handleClick(' ')}>
+        <div className={styles.keyboardRow}>
+          <button className={`${styles.keyboardKey} ${styles.keyboardSpace}`} onClick={() => handleClick(' ')}>
             Space
           </button>
         </div>
@@ -76,6 +76,3 @@ function Keyboard(props) {
 }
 
 export default Keyboard;
-
-
-

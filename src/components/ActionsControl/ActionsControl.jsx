@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import styles from './ActionControl.module.css';
 
 function ActionControl(props) {
-  
   const [showReplaceInput, setShowReplaceInput] = useState(false);
 
-  
   function deleteChar() {
     if (props.text.length > 0) {
       props.setHistory(prevHistory => [...prevHistory, [...props.text]]);
@@ -40,21 +39,18 @@ function ActionControl(props) {
 
   const handleSearch = () => {
     const indexes = [];
-  
     for (let i = 0; i <= props.text.length - props.searchWord.length; i++) {
       const segment = props.text.slice(i, i + props.searchWord.length);
       const segmentStr = segment.map(c => c.char).join('');
-  
       if (segmentStr === props.searchWord) {
         for (let j = 0; j < props.searchWord.length; j++) {
           indexes.push(i + j);
         }
       }
     }
-  
     props.setHighlightedIndexes(indexes);
   };
-  
+
   const handleReplace = () => {
     const newText = [];
     let i = 0;
@@ -75,39 +71,44 @@ function ActionControl(props) {
 
     props.setText(newText);
     props.setHighlightedIndexes([]);
-    setShowReplaceInput(false)
+    setShowReplaceInput(false);
   };
-  
-
 
   return (
-    <div className='actions-controls'>
-      <button onClick={deleteChar}>delete char</button>
-      <button onClick={deleteWord}>delete word</button>
-      <button onClick={deleteAll}>delete all</button>
-      <button onClick={undo}>undo</button>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={props.searchWord}
-        onFocus={() => props.setFocusTarget('search')}
-        readOnly
-      />
-      <button onClick={handleSearch}>חפש</button>
-      <button onClick={() => setShowReplaceInput(true)}>חפש והחלף</button>
+    <div className={styles.actionsControls}>
 
-      {showReplaceInput && (
-        <>
-          <input
-            type="text"
-            placeholder="החלף ב..."
-            value={props.replaceWord}
-            onFocus={() => props.setFocusTarget('replace')}
-            readOnly 
-          />
-          <button onClick={handleReplace}>בצע החלפה</button>
-        </>
-      )}
+      <div className={styles.deleteSection}>
+        <button onClick={deleteChar}>delete char</button>
+        <button onClick={deleteWord}>delete word</button>
+        <button onClick={deleteAll}>delete all</button>
+      </div>
+      
+      <button onClick={undo}>undo</button>
+     
+      <div className={styles.searchSection}>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={props.searchWord}
+          onClick={() => props.setFocusTarget('search')}
+          readOnly
+        />
+         <button className={styles.clearButton} onClick={() => props.setSearchWord('')}>✖</button>
+          <button className={styles.searchBtn} onClick={handleSearch}>חפש</button>
+        </div>
+      
+      <div className={styles.searchSection}>
+        <input
+          type="text"
+          placeholder="החלף ב..."
+          value={props.replaceWord}
+          onFocus={() => props.setFocusTarget('replace')}
+          readOnly
+        />
+         <button className={styles.clearButton} onClick={() => props.setReplaceWord('')}>✖</button>
+        <button className={styles.searchBtn} onClick={handleReplace}>חפש והחלף </button>
+      </div>
+    
     </div>
   );
 }

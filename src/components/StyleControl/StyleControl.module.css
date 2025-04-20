@@ -1,0 +1,53 @@
+.stylesControl {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;   
+    gap: 10px;   
+               
+  }
+
+  .changes{
+    display: flex;
+    align-items: center;
+  }
+
+  .applyChangesLabel{
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .applyChangesButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border: 0.5px solid #cbc4c4;
+    border-radius: 8px;
+    padding: 6px 3px;
+    width: 150px; /* רוחב מוחלט */
+    height: 40px;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 14px;
+    transition: border-color 0.3s, background-color 0.3s;
+  }
+  
+  .applyChangesButton:hover {
+    border-color: #888;
+  }
+  
+  .applyChangesButton span {
+    padding: 4px 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .selected {
+    background-color: #0078d4;
+    color: white;
+    border-radius: 10px;
+  }
+  
