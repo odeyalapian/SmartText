@@ -33,7 +33,7 @@ function LanguagesControl(props) {
         }`}
         onClick={() => props.setCurrentLanguage("Emoji")}
       >
-        Emoji
+        😊
       </button>
       <button
         className={`${styles.languageButton} ${

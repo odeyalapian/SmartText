@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 import styles from './ActionControl.module.css';
+import { FaUndo } from "react-icons/fa";
+
 
 function ActionControl(props) {
   
@@ -67,10 +68,9 @@ function ActionControl(props) {
         i++;
       }
     }
-
+    props.setHistory(prevHistory => [...prevHistory, [...props.text]]);
     props.setText(newText);
     props.setHighlightedIndexes([]);
-    setShowReplaceInput(false);
   };
 
   return (
@@ -82,7 +82,7 @@ function ActionControl(props) {
         <button onClick={deleteAll}>delete all</button>
       </div>
       
-      <button onClick={undo}>undo</button>
+      <button onClick={undo}> undo <FaUndo /> </button>
      
       <div className={styles.searchSection}>
         <input
@@ -93,19 +93,19 @@ function ActionControl(props) {
           readOnly
         />
          <button className={styles.clearButton} onClick={() => props.setSearchWord('')}>✖</button>
-          <button className={styles.searchBtn} onClick={handleSearch}>חפש</button>
+          <button className={styles.searchBtn} onClick={handleSearch}>Search</button>
         </div>
       
       <div className={styles.searchSection}>
         <input
           type="text"
-          placeholder="החלף ב..."
+          placeholder="Replace with..."
           value={props.replaceWord}
           onFocus={() => props.setFocusTarget('replace')}
           readOnly
         />
          <button className={styles.clearButton} onClick={() => props.setReplaceWord('')}>✖</button>
-        <button className={styles.searchBtn} onClick={handleReplace}>חפש והחלף </button>
+        <button className={styles.searchBtn} onClick={handleReplace}>Replace</button>
       </div>
     
     </div>

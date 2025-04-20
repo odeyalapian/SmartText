@@ -56,8 +56,8 @@
 .colorLabel {
   font-size: 14px;
     font-weight: 500;
-    margin-left: 10px;
     color: #333;
+    margin: 0;
 }
 
 

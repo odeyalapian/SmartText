@@ -21,7 +21,7 @@ const toggleApplyMode = () => {
     return (       
         <div className={styles.stylesControl}>
           <div className={styles.changes}>
-          <label className={styles.applyChangesLabel}>החל שינויים</label>
+          <label className={styles.applyChangesLabel}>Start changes:</label>
           <button className={styles.applyChangesButton} onClick={toggleApplyMode}>
             <span className={applyToAll ? styles.selected : ''}>All</span>
             <span className={applyToAll ? '' : styles.selected}>From now</span>

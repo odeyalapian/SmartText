@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './NotesBoard.module.css';
 import Note from '../Note/Note';
+import { GrAdd } from "react-icons/gr";
+import { IoIosSave } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+
+
+
 
 // מקבל את המזהה הבא ושומר את המספר החדש ב-localStorage
 const getNextNoteId = () => {
@@ -183,7 +189,7 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
     <div className={styles.wrapper}>
       {/* Sidebar */}
       <button className={styles.sidebarToggle} onClick={toggleSidebar}>
-        {sidebarOpen ? 'סגור' : '☰'}
+        {sidebarOpen ? '✖' : '☰'}
       </button>
       <div className={`${styles.sidebar} ${sidebarOpen ? styles.open : ''}`}>
         {sidebarOpen && (
@@ -201,9 +207,15 @@ function NotesBoard({ text, setText, color, font, fontSize, direction, highlight
 
       {/* Main Board */}
       <div className={styles.board}>
-        <button className={styles.actButton} onClick={addNewNote}>הוסף פתק</button>
-        <button onClick={saveNote} className={styles.actButton}>שמור</button>
-        <button onClick={deleteeNote} className={styles.actButton}>מחק פתק</button>
+        <div className={styles.AllButtons}>
+         <button className={styles.actButton} onClick={addNewNote}><GrAdd size={20} className="myIcon" />
+         </button>
+        <button onClick={saveNote} className={styles.actButton}><IoIosSave size={20}  className="myIcon" />
+        </button>
+        <button onClick={deleteeNote} className={styles.actButton}><MdDelete size={20}  className="myIcon" />
+        </button>
+        </div>
+       
 
         <div className={styles.grid}>
           {displayNotes.map((note, index) =>

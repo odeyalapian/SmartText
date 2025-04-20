@@ -2,6 +2,33 @@
   display: flex;
   height: 100%;
   min-height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fbfc;
+}
+
+
+.sidebar.open {
+  width: 200px;
+  padding: 10px;
+}
+
+.sidebarToggle {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  background: #ccc;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s;
+}
+
+
+.sidebarToggle:hover {
+  background-color: #9e9e9e;
 }
 
 .sidebar {
@@ -12,41 +39,68 @@
   padding: 0;
   direction: rtl;
 }
-
-.sidebar.open {
-  width: 200px;
-  padding: 10px;
+.AllButtons {
+  display: flex;
+  justify-content: flex-start; /* למקם את התוכן בצד שמאל */
+  margin-right: 5%;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.sidebarToggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #ccc;
+.actButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  background-color: #eee;
   border: none;
-  padding: 5px 10px;
+  border-radius: 8px;
   cursor: pointer;
-  z-index: 1000;
 }
+
+.actButton {
+  
+  border: 1px solid #272829;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #000000;
+  transition: background-color 0.3s ease;
+}
+.actButton:hover {
+  background-color: #babcbe;
+}
+
+.myIcon {
+  font-size: 100px;
+}
+
+
 
 
 .noteList {
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: 50px;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .noteButton {
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #ffffff;
+  border: 1px solid #08365c;
+  color: #003c66;
   width: 100%;
-  padding: 5px;
-  margin-bottom: 5px;
+  padding: 10px 12px;
+  border-radius: 10px;
   cursor: pointer;
   text-align: right;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
-
 .board {
   flex: 1;
   padding: 20px;
@@ -59,10 +113,14 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
 }
 
 .cell {
   padding: 10px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: transform 0.2s, box-shadow 0.2s;
 
 }
 

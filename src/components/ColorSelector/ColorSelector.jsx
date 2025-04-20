@@ -50,7 +50,7 @@ function ColorSelector(props) {
 
   return (
     <div className={styles.colorSelector} ref={colorPickerRef}>
-      <label className={styles.colorLabel}>צבע גופן</label>
+      <label className={styles.colorLabel}>color:</label>
       <button 
         className={styles.colorButton} 
         style={{ backgroundColor: props.color }} 
