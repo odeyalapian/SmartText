@@ -1,52 +1,50 @@
-import React from 'react';
-import styles from './keyboard.module.css';
+import React from "react";
+import styles from "./keyboard.module.css";
 
 function Keyboard(props) {
   const keyboards = {
     English: [
-      ['0', '9', '8', '7', '6', '5', '4', '3', '2', '1'],
-      ['p', 'o', 'i', 'u', 'y', 't', 'r', 'e', 'w', 'q'],
-      [';', 'l', 'k', 'j', 'h', 'g', 'f', 'd', 's', 'a'],
-      ['/','.', ',', 'm', 'n', 'b', 'v', 'c', 'x', 'z']
+      ["0", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
+      ["p", "o", "i", "u", "y", "t", "r", "e", "w", "q"],
+      [";", "l", "k", "j", "h", "g", "f", "d", "s", "a"],
+      ["/", ".", ",", "m", "n", "b", "v", "c", "x", "z"],
     ],
     Hebrew: [
-      ['0', '9', '8', '7', '6', '5', '4', '3', '2', '1'],
-      ['פ', 'ם', 'ן', 'ו', 'ט', 'א', 'ר', 'ק', '\'', '/'],
-      ['ף', 'ך', 'ל', 'ח', 'י', 'ע', 'כ', 'ג', 'ד', 'ש'],
-      ['.', 'ץ', 'ת', 'צ', 'מ', 'נ', 'ה', 'ב', 'ס', 'ז']
-    ]
-    ,
+      ["0", "9", "8", "7", "6", "5", "4", "3", "2", "1"],
+      ["פ", "ם", "ן", "ו", "ט", "א", "ר", "ק", "'", "/"],
+      ["ף", "ך", "ל", "ח", "י", "ע", "כ", "ג", "ד", "ש"],
+      [".", "ץ", "ת", "צ", "מ", "נ", "ה", "ב", "ס", "ז"],
+    ],
     Emoji: [
-      ['😀', '😂', '😍', '🤔', '😎', '😴', '😢', '😡', '🙄', '😊'],
-      ['👍', '👎', '👌', '👋', '✌️', '🤞', '🙏', '💪', '🤝', '👏'],
-      ['❤️', '💔', '💯', '🔥', '✨', '💫', '🌟', '💥', '💦', '🎵'],
-      ['🍕', '🍔', '🍦', '🍫', '🍎', '🥑', '🍷', '🍺', '🎂', '🍿']
+      ["😀", "😂", "😍", "🤔", "😎", "😴", "😢", "😡", "🙄", "😊"],
+      ["👍", "👎", "👌", "👋", "✌️", "🤞", "🙏", "💪", "🤝", "👏"],
+      ["❤️", "💔", "💯", "🔥", "✨", "💫", "🌟", "💥", "💦", "🎵"],
+      ["🍕", "🍔", "🍦", "🍫", "🍎", "🥑", "🍷", "🍺", "🎂", "🍿"],
     ],
     Symbols: [
-      ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')'],
-      ['-', '_', '=', '+', '[', ']', '{', '}', '|', '\\'],
-      [':', '"', '\'', '<', '>', '?', '~', '`', '№', '€'],
-      ['£', '¥', '©', '®', '™', '§', '¶', '•', '−', '×']
-    ]
+      ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"],
+      ["-", "_", "=", "+", "[", "]", "{", "}", "|", "\\"],
+      [":", '"', "'", "<", ">", "?", "~", "`", "№", "€"],
+      ["£", "¥", "©", "®", "™", "§", "¶", "•", "−", "×"],
+    ],
   };
 
   const currentStyle = {
     color: props.color,
     fontFamily: props.font,
-    fontSize: props.fontSize
+    fontSize: props.fontSize,
   };
 
   const handleClick = (char) => {
+    console.log(props.focusTarget);
 
-    console.log(props.focusTarget)
-    
-    if (props.focusTarget === 'text') {
-      props.setHistory(prev => [...prev, [...props.text]]);
-      props.setText(prevText => [...prevText, { char, style: currentStyle }]);
-    } else if (props.focusTarget === 'search') {
-      props.setSearchWord(prev => prev + char);
-    } else if (props.focusTarget === 'replace') {
-      props.setReplaceWord(prev => prev + char);
+    if (props.focusTarget === "text") {
+      props.setHistory((prev) => [...prev, [...props.text]]);
+      props.setText((prevText) => [...prevText, { char, style: currentStyle }]);
+    } else if (props.focusTarget === "search") {
+      props.setSearchWord((prev) => prev + char);
+    } else if (props.focusTarget === "replace") {
+      props.setReplaceWord((prev) => prev + char);
     }
   };
 
@@ -67,7 +65,10 @@ function Keyboard(props) {
           </div>
         ))}
         <div className={styles.keyboardRow}>
-          <button className={`${styles.keyboardKey} ${styles.keyboardSpace}`} onClick={() => handleClick(' ')}>
+          <button
+            className={`${styles.keyboardKey} ${styles.keyboardSpace}`}
+            onClick={() => handleClick(" ")}
+          >
             Space
           </button>
         </div>

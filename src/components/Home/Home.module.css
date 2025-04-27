@@ -1,74 +1,74 @@
 /* Reset בסיסי */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  html, body {
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-  }
-  
-  .app {
-    position: absolute;
-    height: 100%; /* חשוב! וודא שה־.app תופס את כל הגובה של המסך */
-    display: flex;
-    flex-direction: column;
-    direction: rtl;
-  }
-  
-  
-  
-  .splitContainer {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* חשוב גם כאן שה־.splitContainer תופס את כל הגובה */
-  }
-  
-  .topHalf {
-    height: 55%;  /* 60% מהגודל של המסך */
-    background-color: #e3e3e3;
-    overflow: hidden; /* כדי למנוע גלילה פנימית */
-    
-  }
-  
-  .bottomHalf {
-    height: 45%; /* 40% מהגודל של המסך */
-    background-color: #c3c3c3;
-    overflow: hidden; /* כדי למנוע גלילה פנימית */
-    
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  .helloSpan{
-    margin-right: 86.5%;
-    margin-top: 3.8%;
-    position: absolute;
-    z-index: 2;
-    font-size: larger;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
+html,
+body {
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
 
-  .helloSpan:hover{
-    border:none !important;
-  }
-  .header{
-    display: flex;
-    align-items: center;
-  }
+.app {
+  position: absolute;
+  height: 100%; /* חשוב! וודא שה־.app תופס את כל הגובה של המסך */
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+}
 
-  .signOut {
-    margin-right: 97%;
-    margin-top: 3%;
-    position: absolute;
-    z-index: 2;
-    cursor: pointer; /* עושה את הסמן של העכבר ליד לחיצה */
-    transition: transform 0.2s ease, color 0.2s ease; /* מעברים חלקים */
-  }
-  
-  .signOut:hover {
-    transform: scale(1.1); /* מגדיל קצת כשהעכבר מעל */
-    color: #7d8188; /* לדוגמה, שינוי צבע אדום בלחיצה */
-  }
-  
+.splitContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* חשוב גם כאן שה־.splitContainer תופס את כל הגובה */
+}
+
+.topHalf {
+  height: 55%; /* 60% מהגודל של המסך */
+  background-color: #e3e3e3;
+  overflow: hidden; /* כדי למנוע גלילה פנימית */
+}
+
+.bottomHalf {
+  height: 45%; /* 40% מהגודל של המסך */
+  background-color: #c3c3c3;
+  overflow: hidden; /* כדי למנוע גלילה פנימית */
+}
+
+.helloSpan {
+  margin-right: 86.5%;
+  margin-top: 3.8%;
+  position: absolute;
+  z-index: 2;
+  font-size: larger;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.helloSpan:hover {
+  border: none !important;
+}
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.signOut {
+  margin-right: 97%;
+  margin-top: 3%;
+  position: absolute;
+  z-index: 2;
+  cursor: pointer; /* עושה את הסמן של העכבר ליד לחיצה */
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease; /* מעברים חלקים */
+}
+
+.signOut:hover {
+  transform: scale(1.1); /* מגדיל קצת כשהעכבר מעל */
+  color: #7d8188; /* לדוגמה, שינוי צבע אדום בלחיצה */
+}

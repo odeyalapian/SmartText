@@ -15,7 +15,9 @@
   border-radius: 8px;
   cursor: pointer;
   color: transparent;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   margin-right: 92px;
   font-weight: bold;
 }
@@ -37,7 +39,6 @@
   grid-template-columns: repeat(4, 15px);
   z-index: 100;
   animation: fadeIn 0.2s ease-in-out;
-  
 }
 
 .colorOption {
@@ -52,16 +53,13 @@
   transform: scale(1.1);
 }
 
-
-
 .colorLabel {
   font-size: 14px;
-    font-weight: 500;
-    color: #0078d4;;
-    margin: 0;
-    margin-left: 15px;
+  font-weight: 500;
+  color: #0078d4;
+  margin: 0;
+  margin-left: 15px;
 }
-
 
 @keyframes fadeIn {
   from {

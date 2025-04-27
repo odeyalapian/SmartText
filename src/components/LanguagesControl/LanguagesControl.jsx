@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './LanguagesControl.module.css';
+import React from "react";
+import styles from "./LanguagesControl.module.css";
 
 function LanguagesControl(props) {
   function changeLanguage(language) {
@@ -13,7 +13,9 @@ function LanguagesControl(props) {
     <div className={styles.languagesControl}>
       <button
         className={`${styles.languageButton} ${
-          props.currentLanguage === "Hebrew" ? styles.languageButtonSelected : ''
+          props.currentLanguage === "Hebrew"
+            ? styles.languageButtonSelected
+            : ""
         }`}
         onClick={() => changeLanguage("Hebrew")}
       >
@@ -21,7 +23,9 @@ function LanguagesControl(props) {
       </button>
       <button
         className={`${styles.languageButton} ${
-          props.currentLanguage === "English" ? styles.languageButtonSelected : ''
+          props.currentLanguage === "English"
+            ? styles.languageButtonSelected
+            : ""
         }`}
         onClick={() => changeLanguage("English")}
       >
@@ -29,7 +33,7 @@ function LanguagesControl(props) {
       </button>
       <button
         className={`${styles.languageButton} ${
-          props.currentLanguage === "Emoji" ? styles.languageButtonSelected : ''
+          props.currentLanguage === "Emoji" ? styles.languageButtonSelected : ""
         }`}
         onClick={() => props.setCurrentLanguage("Emoji")}
       >
@@ -37,7 +41,9 @@ function LanguagesControl(props) {
       </button>
       <button
         className={`${styles.languageButton} ${
-          props.currentLanguage === "Symbols" ? styles.languageButtonSelected : ''
+          props.currentLanguage === "Symbols"
+            ? styles.languageButtonSelected
+            : ""
         }`}
         onClick={() => props.setCurrentLanguage("Symbols")}
       >

@@ -1,46 +1,45 @@
-import React, { useState } from 'react';
-import styles from './Login.module.css';
+import React, { useState } from "react";
+import styles from "./Login.module.css";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 
 function Login({ setUsername, username, setIsConnected }) {
   const [isLoginPage, setIsLoginPage] = useState(true);
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem('noteAppUsers')) || {};
-  
+    const users = JSON.parse(localStorage.getItem("noteAppUsers")) || {};
+
     const user = users[username];
-  
+
     if (user && user.password === password) {
-      alert('Login successful!');
+      alert("Login successful!");
       setIsConnected(true);
       setUsername(username);
     } else {
-      alert('Incorrect username or password');
+      alert("Incorrect username or password");
     }
   };
-  
+
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem('noteAppUsers')) || {};
-  
+    const users = JSON.parse(localStorage.getItem("noteAppUsers")) || {};
+
     if (users[username]) {
-      alert('Username already exists!');
+      alert("Username already exists!");
       return;
     }
-  
+
     users[username] = { username, email, password };
-    localStorage.setItem('noteAppUsers', JSON.stringify(users));
-  
-    alert('Signup successful!');
+    localStorage.setItem("noteAppUsers", JSON.stringify(users));
+
+    alert("Signup successful!");
     setIsConnected(true);
     setUsername(username);
   };
-  
 
   return (
     <div className={styles.LoginPage}>
@@ -73,8 +72,11 @@ function Login({ setUsername, username, setIsConnected }) {
             </button>
             <div className={styles.registerLink}>
               <p>
-                Don't have an account?{' '}
-                <a onClick={() => setIsLoginPage(false)} style={{ cursor: 'pointer' }}>
+                Don't have an account?{" "}
+                <a
+                  onClick={() => setIsLoginPage(false)}
+                  style={{ cursor: "pointer" }}
+                >
                   Sign up
                 </a>
               </p>
@@ -118,8 +120,11 @@ function Login({ setUsername, username, setIsConnected }) {
             </button>
             <div className={styles.registerLink}>
               <p>
-                Already have an account?{' '}
-                <a onClick={() => setIsLoginPage(true)} style={{ cursor: 'pointer' }}>
+                Already have an account?{" "}
+                <a
+                  onClick={() => setIsLoginPage(true)}
+                  style={{ cursor: "pointer" }}
+                >
                   Login
                 </a>
               </p>

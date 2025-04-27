@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import Keyboard from '../Keyboard/Keyboard.jsx';
-import styles from './TextEdit.module.css';
-import ActionControl from '../ActionsControl/ActionsControl';
-import StyleControl from '../StyleControl/StyleControl';
-import LanguagesControl from '../LanguagesControl/LanguagesControl';
+import React, { useState } from "react";
+import Keyboard from "../Keyboard/Keyboard.jsx";
+import styles from "./TextEdit.module.css";
+import ActionControl from "../ActionsControl/ActionsControl";
+import StyleControl from "../StyleControl/StyleControl";
+import LanguagesControl from "../LanguagesControl/LanguagesControl";
 
 function TextEdit(props) {
   const [currentLanguage, setCurrentLanguage] = useState("English");
-  const [searchWord, setSearchWord] = useState('');
-  const [replaceWord, setReplaceWord] = useState('');
+  const [searchWord, setSearchWord] = useState("");
+  const [replaceWord, setReplaceWord] = useState("");
 
   return (
     <div className={styles.textEditorContainer}>

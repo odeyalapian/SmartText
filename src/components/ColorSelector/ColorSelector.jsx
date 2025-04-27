@@ -1,44 +1,46 @@
-import React, { useState, useRef, useEffect } from 'react';
-import styles from './ColorSelector.module.css'; // השתמש ב־CSS Modules
+import React, { useState, useRef, useEffect } from "react";
+import styles from "./ColorSelector.module.css"; // השתמש ב־CSS Modules
 import { AiOutlineFontColors } from "react-icons/ai";
 
 function ColorSelector(props) {
-
   const [isOpen, setIsOpen] = useState(false);
   const colorPickerRef = useRef(null);
 
   const colorOptions = [
-    { id: '#000000', label: 'שחור' },
-    { id: '#ff0000', label: 'אדום' },
-    { id: '#0000ff', label: 'כחול' },
-    { id: '#00aa00', label: 'ירוק' },
-    { id: '#ff00ff', label: 'סגול' },
-    { id: '#ff8c00', label: 'כתום' },
-    { id: '#ffff00', label: 'צהוב' },
-    { id: '#a52a2a', label: 'חום' }
+    { id: "#000000", label: "שחור" },
+    { id: "#ff0000", label: "אדום" },
+    { id: "#0000ff", label: "כחול" },
+    { id: "#00aa00", label: "ירוק" },
+    { id: "#ff00ff", label: "סגול" },
+    { id: "#ff8c00", label: "כתום" },
+    { id: "#ffff00", label: "צהוב" },
+    { id: "#a52a2a", label: "חום" },
   ];
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (colorPickerRef.current && !colorPickerRef.current.contains(event.target)) {
+      if (
+        colorPickerRef.current &&
+        !colorPickerRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleColorChange = (newColor) => {
-    props.setHistory(prevHistory => [...prevHistory, [...props.text]]);
+    props.setHistory((prevHistory) => [...prevHistory, [...props.text]]);
     if (props.applyToAll) {
       // שינוי צבע לכל הטקסט
-      const updatedText = props.text.map(item => ({
+      const updatedText = props.text.map((item) => ({
         ...item,
         style: {
           ...item.style,
-          color: newColor
-        }
+          color: newColor,
+        },
       }));
       props.setText(updatedText);
       props.setColor(newColor);
@@ -51,30 +53,29 @@ function ColorSelector(props) {
 
   return (
     <div className={styles.colorSelector} ref={colorPickerRef}>
-      <button 
-        className={styles.colorButton} 
-        style={{ color: props.color }} 
+      <button
+        className={styles.colorButton}
+        style={{ color: props.color }}
         onClick={() => setIsOpen(!isOpen)}
-      ><AiOutlineFontColors size={25} className="myIcon" />
+      >
+        <AiOutlineFontColors size={25} className="myIcon" />
       </button>
       <label className={styles.colorLabel}>:Text color</label>
-  
+
       {isOpen && (
         <div className={styles.colorDropdown}>
           {colorOptions.map((colorOption) => (
             <button
               key={colorOption.id}
-              className={`${styles.colorOption} ${props.color === colorOption.id ? styles.active : ''}`}
+              className={`${styles.colorOption} ${props.color === colorOption.id ? styles.active : ""}`}
               style={{ backgroundColor: colorOption.id }}
               onClick={() => handleColorChange(colorOption.id)}
-            >
-            </button>
+            ></button>
           ))}
         </div>
       )}
     </div>
   );
-  
 }
 
 export default ColorSelector;

@@ -1,29 +1,29 @@
-import React from 'react';
-import styles from './FontSelector.module.css';
+import React from "react";
+import styles from "./FontSelector.module.css";
 
 function FontSelector(props) {
   const fonts = [
-    { id: 'Arial', label: 'Arial' },
-    { id: 'Times New Roman', label: 'Times New Roman' },
-    { id: 'Courier New', label: 'Courier New' },
-    { id: 'David', label: 'David' },
-    { id: 'Miriam', label: 'Miriam' }
+    { id: "Arial", label: "Arial" },
+    { id: "Times New Roman", label: "Times New Roman" },
+    { id: "Courier New", label: "Courier New" },
+    { id: "David", label: "David" },
+    { id: "Miriam", label: "Miriam" },
   ];
 
   const fontSizes = [12, 14, 16, 18, 20, 24, 28, 32, 36, 42];
 
-  const selectedFont = props.font || 'Arial';
+  const selectedFont = props.font || "Arial";
   const selectedFontSize = props.fontSize || 18;
 
   const handleFontChange = (newFont) => {
-    props.setHistory(prev => [...prev, [...props.text]]);
+    props.setHistory((prev) => [...prev, [...props.text]]);
     if (props.applyToAll && Array.isArray(props.text)) {
-      const updatedText = props.text.map(item => ({
+      const updatedText = props.text.map((item) => ({
         ...item,
         style: {
           ...item.style,
-          fontFamily: newFont
-        }
+          fontFamily: newFont,
+        },
       }));
       props.setText(updatedText);
     }
@@ -31,14 +31,14 @@ function FontSelector(props) {
   };
 
   const handleFontSizeChange = (newSize) => {
-    props.setHistory(prev => [...prev, [...props.text]]);
+    props.setHistory((prev) => [...prev, [...props.text]]);
     if (props.applyToAll && Array.isArray(props.text)) {
-      const updatedText = props.text.map(item => ({
+      const updatedText = props.text.map((item) => ({
         ...item,
         style: {
           ...item.style,
-          fontSize: newSize
-        }
+          fontSize: newSize,
+        },
       }));
       props.setText(updatedText);
     }
@@ -52,8 +52,12 @@ function FontSelector(props) {
           value={props.font}
           onChange={(e) => handleFontChange(e.target.value)}
         >
-          {fonts.map(font => (
-            <option key={font.id} value={font.id} style={{ fontFamily: font.id }}>
+          {fonts.map((font) => (
+            <option
+              key={font.id}
+              value={font.id}
+              style={{ fontFamily: font.id }}
+            >
               {font.label}
             </option>
           ))}
@@ -66,7 +70,7 @@ function FontSelector(props) {
           value={props.fontSize}
           onChange={(e) => handleFontSizeChange(parseInt(e.target.value))}
         >
-          {fontSizes.map(size => (
+          {fontSizes.map((size) => (
             <option key={size} value={size}>
               {size}px
             </option>
