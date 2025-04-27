@@ -20,9 +20,14 @@ function NotesBoard({ username, text, setText, color, font, fontSize, direction,
 
   const [savedNotes, setSavedNotes] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [displayNotes, setDisplayNotes] = useState([-1, -1, -1, -1]);
-  const [currentIndex, setCurrentIndex]=useState(-1);
-  const [isActive, setIsActive] = useState([false,false,false,false,false]);
+  const [displayNotes, setDisplayNotes] = useState([{
+    id: getNextNoteId(),
+    name: "<new note>",
+    data: [],
+    history: []
+  }, -1, -1, -1]);
+  const [currentIndex, setCurrentIndex]=useState(0);
+  const [isActive, setIsActive] = useState([true,false,false,false]);
 
  
 
@@ -220,8 +225,10 @@ function NotesBoard({ username, text, setText, color, font, fontSize, direction,
 
 
   return (
+    
     <div className={styles.wrapper}>
       {/* Sidebar */}
+      
       <button className={styles.sidebarToggle} onClick={toggleSidebar}>☰</button>
       <div className={`${styles.sidebar} ${sidebarOpen ? styles.open : ''}`}>
         {sidebarOpen && (
