@@ -31,9 +31,7 @@ function ActionControl(props) {
 
   // פונקציה לביטול הפעולה האחרונה (שחזור ממצב קודם בהיסטוריה)
   const undo = () => {
-    if (props.history.length === 0) {
-      //props.setText([]);
-    } else {
+    if (props.history.length !== 0) {
       const lastState = props.history[props.history.length - 1];
       console.log(lastState);
       props.setText([...lastState]);

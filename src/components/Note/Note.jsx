@@ -26,7 +26,7 @@ function Note(props) {
       >
         {(props.currentIndex === props.index ? props.text : props.noteData).map(
           (item, index) => {
-            const isHighlighted = props.highlightedIndexes.includes(index);
+            const isHighlighted = props.highlightedIndexes.includes(index) && props.isActive;
             const style = isHighlighted
               ? { ...item.style, backgroundColor: "#add8e6" }
               : item.style;

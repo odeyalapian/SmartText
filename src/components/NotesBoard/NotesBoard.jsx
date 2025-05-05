@@ -130,6 +130,7 @@ function NotesBoard({
     if (currentIndex != -1) {
       displayNotes[currentIndex].data = text;
       displayNotes[currentIndex].history = history;
+      displayNotes[currentIndex].direction = direction;
     }
     setCurrentIndex(emptySlot);
     setText([]);
